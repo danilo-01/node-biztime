@@ -65,7 +65,7 @@ router.put('/:id', async (req, res, next) => {
         if(result.rows.length === 0){
             return next()
         }
-        return res.status(201).send(JSON.stringify({ "Invoice" : result.rows }));
+        return res.status(200).send(JSON.stringify({ "Invoice" : result.rows }));
 
     }catch{
         e = new ExpressError('Amt must only contain numbers', 400)

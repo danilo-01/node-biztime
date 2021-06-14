@@ -38,7 +38,6 @@ router.post('/', async (req, res, next) => {
     
         return res.status(201).send(JSON.stringify(result.rows));
     }catch(e){
-        e = new ExpressError('Could not add company, company already exists.', 400);
         return next(e);
     }
 })
@@ -48,7 +47,7 @@ router.put('/:code', async (req, res, next) => {
     const { code , name, description } = req.body;
     const old_code = req.params.code;
     const exists = await dbSelect('companies', '*', `code = '${old_code}'`);
-    
+
     if(!exists){
         return next();
     }
